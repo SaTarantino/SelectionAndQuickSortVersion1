@@ -6,13 +6,19 @@ public class QuickSort<T extends Comparable<? super T>> implements ArraySort<T> 
 
     }
 
-    private int partition (T array[], int left, int right) {
+    private void partition (T array[], T left, T right) {
 
-//        int i = left;
-//        int j = right;
-//        int tmp;
-//        int pivot = (int) array[(left + right) / 2];
+//        T i = array[0];
+//        T j = array[array.length -1];
+//        T tmp;
+//        T pivot = j;
 //
+//        while (i != j) {
+//            while (j != pivot){
+//                array[i] = array[i+1];
+//            }
+//        }
+
 //        while (i <= j) {
 //            while (array[j].compareTo(array[pivot]) < 0) i++;
 //            while (array[j].compareTo(array[pivot]) > 0) j--;
@@ -25,7 +31,6 @@ public class QuickSort<T extends Comparable<? super T>> implements ArraySort<T> 
 //            }
 //        }
 //        return i;
-
 
     }
 }
