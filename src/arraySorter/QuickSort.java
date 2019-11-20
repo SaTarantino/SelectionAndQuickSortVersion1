@@ -1,36 +1,45 @@
 package arraySorter;
 
+import java.util.Arrays;
+
 public class QuickSort<T extends Comparable<? super T>> implements ArraySort<T> {
 
     public T[] sort(T[] array) {
 
+        System.out.println(Arrays.toString(array));
+
+
+        if (array[0].compareTo(array[array.length - 1]) < 0) {
+
+            int pi = quickSort(array, 0, array.length - 1);
+
+            quickSort(array, 0, pi-1);
+            quickSort(array, pi+1, array.length - 1);
+
+        }
+        System.out.println(Arrays.toString(array));
+        return array;
+
     }
 
-    private void partition (T array[], T left, T right) {
+    private int quickSort (T[] array, int low, int high) {
 
-//        T i = array[0];
-//        T j = array[array.length -1];
-//        T tmp;
-//        T pivot = j;
-//
-//        while (i != j) {
-//            while (j != pivot){
-//                array[i] = array[i+1];
-//            }
-//        }
+        int pivot = array.length - 1;
+        int i = low - 1;
+        T tmp;
 
-//        while (i <= j) {
-//            while (array[j].compareTo(array[pivot]) < 0) i++;
-//            while (array[j].compareTo(array[pivot]) > 0) j--;
-//            if (i <= j) {
-//                tmp = (int) array[i];
-//                array[i] = array[j];
-//                array[j] = tmp;
-//                i++;
-//                j--;
-//            }
-//        }
-//        return i;
+        for (int j = low; j < high; j++) {
+            if (array[j].compareTo(array[pivot]) < 0) {
+                i++;
+                tmp = array[i];
+                array[i] = array[j];
+                array[j] = tmp;
+            }
+        }
+        tmp = array[i + 1];
+        array[i + 1] = array[high];
+        array[high] = tmp;
 
+        return i + 1;
     }
 }
