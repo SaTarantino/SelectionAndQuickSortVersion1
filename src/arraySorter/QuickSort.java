@@ -7,13 +7,16 @@ public class QuickSort<T extends Comparable<? super T>> implements ArraySort<T> 
     public T[] sort(T[] array) {
 
         System.out.println(Arrays.toString(array));
-        int pi = quickSort(array, 0, array.length - 1);
+
+        quickSort(array, 0, array.length - 1);
+
         System.out.println(Arrays.toString(array));
         return array;
-
     }
 
-    private int quickSort (T[] array, int low, int high) {
+    private void quickSort (T[] array, int low, int high) {
+
+        if (low > high) return;
 
         int pivot = high;
         int i = low;
@@ -27,10 +30,12 @@ public class QuickSort<T extends Comparable<? super T>> implements ArraySort<T> 
                 i++;
             }
         }
+
         tmp = array[i];
         array[i] = array[high];
         array[high] = tmp;
 
-        return i;
+        quickSort(array, low, pivot - 1);
+        quickSort(array, pivot + 1, high);
     }
 }
