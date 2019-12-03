@@ -1,41 +1,49 @@
 package arraySorter;
 
-import java.util.Arrays;
-
 public class QuickSort<T extends Comparable<? super T>> implements ArraySort<T> {
 
     public T[] sort(T[] array) {
 
-        System.out.println(Arrays.toString(array));
-
         quickSort(array, 0, array.length - 1);
-
-        System.out.println(Arrays.toString(array));
         return array;
     }
 
-    private void quickSort (T[] array, int low, int high) {
+    private int partition(T[] array, int low, int high) {
 
-        if (low > high) return;
+        T tmp = array[low];
+        int pivot = (low + high) / 2;
 
-        int pivot = high;
-        int i = low;
-        T tmp;
+        if ((array[low].compareTo(array[pivot]) <= 0 && array[pivot].compareTo(array[high]) <= 0) ||
+                (array[high].compareTo(array[pivot]) <= 0 && array[pivot].compareTo(array[low]) <= 0))
+            tmp = array[pivot];
 
-        for (int j = low; j < high; j++) {
-            if (array[j].compareTo(array[pivot]) < 0) {
-                tmp = array[i];
-                array[i] = array[j];
-                array[j] = tmp;
-                i++;
-            }
+        if ((array[low].compareTo(array[high]) <= 0) && array[high].compareTo(array[pivot]) <= 0 ||
+                (array[pivot].compareTo(array[high])) <= 0 && array[high].compareTo(array[low]) <= 0)
+            tmp = array[high];
+
+        int i = low - 1;
+        int j = high + 1;
+
+        while (true) {
+            do i++; while (!(i > high || array[i].compareTo(tmp) >= 0));
+            do j--; while (!(j < low || array[j].compareTo(tmp) <= 0));
+            if (i < j) swap(array, i, j);
+            else return j;
         }
+    }
 
-        tmp = array[i];
-        array[i] = array[high];
-        array[high] = tmp;
+    private void quickSort(T[] array, int low, int high) {
+        if (low < high) {
+            int pivot = partition(array, low, high);
+            quickSort(array, low, pivot);
+            quickSort(array, pivot + 1, high);
+        }
+    }
 
-        quickSort(array, low, pivot - 1);
-        quickSort(array, pivot + 1, high);
+    private void swap(T[] array, int i, int j) {
+        T x;
+        x = array[i];
+        array[i] = array[j];
+        array[j] = x;
     }
 }
