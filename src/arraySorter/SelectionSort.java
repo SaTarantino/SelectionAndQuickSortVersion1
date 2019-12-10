@@ -7,13 +7,16 @@ package arraySorter;
 
 public class SelectionSort<T extends Comparable<? super T>> implements ArraySort<T> {
 
+    /**
+     * An implementation of the Selection Sort algorithm.
+     *
+     * @param array the array to be sorted
+     * @return the sorted array
+     */
+
     public T[] sort(T[] array) {
 
-        /**
-         * An implementation of the Selection Sort algorithm.
-         *
-         * @param <T> the type of array
-         */
+
 
         for (int i = 0; i < (array.length - 1); i++) {
 

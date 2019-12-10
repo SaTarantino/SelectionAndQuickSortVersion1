@@ -1,12 +1,33 @@
 package arraySorter;
 
+/**
+ * author Salvatore Tarantino, u1860830
+ * u1860830@hud.ac.uk
+ */
+
 public class QuickSort<T extends Comparable<? super T>> implements ArraySort<T> {
+
+    /**
+     * An implementation of the Selection Sort algorithm.
+     *
+     * @param array the array to be sorted
+     * @return the sorted array
+     */
 
     public T[] sort(T[] array) {
 
         quickSort(array, 0, array.length - 1);
         return array;
     }
+
+    /**
+     * Implementation of the partition method, used for divide the array in two different array.
+     *
+     * @param array the array to be sorted
+     * @param low the first element of the array
+     * @param high the last element of the array
+     * @return the pivot element
+     */
 
     private int partition(T[] array, int low, int high) {
 
@@ -31,6 +52,10 @@ public class QuickSort<T extends Comparable<? super T>> implements ArraySort<T> 
             else return j;
         }
     }
+
+    /**
+     * Recursive call at the sorting method
+     */
 
     private void quickSort(T[] array, int low, int high) {
         if (low < high) {
